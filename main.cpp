@@ -8,6 +8,7 @@ struct Player{
 };
 Player nr1,nr2;
 int s1,s2,nrP,choice,bet;
+string R="+-------+",S="|@      |",M="|   @   |",D="|      @|",SD="|@     @|",N="|       |";
 void Welcome()
 {
     cout<<"Welcome to Barbut"<<endl;
@@ -36,6 +37,96 @@ void GenRandNr()
     nr2.D1=rand()%6+1;
     nr2.D2=rand()%6+1;
 }
+void DisplayD(int D1,int D2)
+{
+    cout<<endl<<R<<' '<<R<<endl;
+    if (D1==1){
+        if(D2==1){
+            cout<<N<<' '<<N<<endl<<M<<' '<<M<<endl<<N<<' '<<N<<endl;
+        }else if(D2==2){
+            cout<<N<<' '<<S<<endl<<M<<' '<<N<<endl<<N<<' '<<D<<endl;
+        }else if(D2==3){
+            cout<<N<<' '<<D<<endl<<M<<' '<<M<<endl<<N<<' '<<S<<endl;
+        }else if(D2==4){
+            cout<<N<<' '<<SD<<endl<<M<<' '<<N<<endl<<N<<' '<<SD<<endl;
+        }else if(D2==5){
+            cout<<N<<' '<<SD<<endl<<M<<' '<<M<<endl<<N<<' '<<SD<<endl;
+        }else{
+            cout<<N<<' '<<SD<<endl<<M<<' '<<SD<<endl<<N<<' '<<SD<<endl;
+        }
+    }else if(D1==2){
+        if(D2==1){
+            cout<<S<<' '<<N<<endl<<N<<' '<<M<<endl<<D<<' '<<N<<endl;
+        }else if(D2==2){
+            cout<<S<<' '<<S<<endl<<N<<' '<<N<<endl<<D<<' '<<D<<endl;
+        }else if(D2==3){
+            cout<<S<<' '<<D<<endl<<N<<' '<<M<<endl<<D<<' '<<S<<endl;
+        }else if(D2==4){
+            cout<<S<<' '<<SD<<endl<<N<<' '<<N<<endl<<D<<' '<<SD<<endl;
+        }else if(D2==5){
+            cout<<S<<' '<<SD<<endl<<N<<' '<<M<<endl<<D<<' '<<SD<<endl;
+        }else{
+            cout<<S<<' '<<SD<<endl<<N<<' '<<SD<<endl<<D<<' '<<SD<<endl;
+        }
+    }else if(D1==3){
+        if(D2==1){
+            cout<<D<<' '<<N<<endl<<M<<' '<<M<<endl<<S<<' '<<N<<endl;
+        }else if(D2==2){
+            cout<<D<<' '<<S<<endl<<M<<' '<<N<<endl<<S<<' '<<D<<endl;
+        }else if(D2==3){
+            cout<<D<<' '<<D<<endl<<M<<' '<<M<<endl<<S<<' '<<S<<endl;
+        }else if(D2==4){
+            cout<<D<<' '<<SD<<endl<<M<<' '<<N<<endl<<S<<' '<<SD<<endl;
+        }else if(D2==5){
+            cout<<D<<' '<<SD<<endl<<M<<' '<<M<<endl<<S<<' '<<SD<<endl;
+        }else{
+            cout<<N<<' '<<SD<<endl<<M<<' '<<SD<<endl<<S<<' '<<SD<<endl;
+        }
+    }else if(D1==4){
+        if(D2==1){
+            cout<<SD<<' '<<N<<endl<<N<<' '<<M<<endl<<SD<<' '<<N<<endl;
+        }else if(D2==2){
+            cout<<SD<<' '<<S<<endl<<N<<' '<<N<<endl<<SD<<' '<<D<<endl;
+        }else if(D2==3){
+            cout<<SD<<' '<<D<<endl<<N<<' '<<M<<endl<<SD<<' '<<S<<endl;
+        }else if(D2==4){
+            cout<<SD<<' '<<SD<<endl<<N<<' '<<N<<endl<<SD<<' '<<SD<<endl;
+        }else if(D2==5){
+            cout<<SD<<' '<<SD<<endl<<N<<' '<<M<<endl<<SD<<' '<<SD<<endl;
+        }else{
+            cout<<SD<<' '<<SD<<endl<<N<<' '<<SD<<endl<<SD<<' '<<SD<<endl;
+        }
+    }else if(D1==5){
+        if(D2==1){
+            cout<<SD<<' '<<N<<endl<<M<<' '<<M<<endl<<SD<<' '<<N<<endl;
+        }else if(D2==2){
+            cout<<SD<<' '<<S<<endl<<M<<' '<<N<<endl<<SD<<' '<<D<<endl;
+        }else if(D2==3){
+            cout<<SD<<' '<<D<<endl<<M<<' '<<M<<endl<<SD<<' '<<S<<endl;
+        }else if(D2==4){
+            cout<<SD<<' '<<SD<<endl<<M<<' '<<N<<endl<<SD<<' '<<SD<<endl;
+        }else if(D2==5){
+            cout<<SD<<' '<<SD<<endl<<M<<' '<<M<<endl<<SD<<' '<<SD<<endl;
+        }else{
+            cout<<SD<<' '<<SD<<endl<<M<<' '<<SD<<endl<<SD<<' '<<SD<<endl;
+        }
+    }else{
+        if(D2==1){
+            cout<<SD<<' '<<N<<endl<<SD<<' '<<M<<endl<<SD<<' '<<N<<endl;
+        }else if(D2==2){
+            cout<<SD<<' '<<S<<endl<<SD<<' '<<N<<endl<<SD<<' '<<D<<endl;
+        }else if(D2==3){
+            cout<<SD<<' '<<D<<endl<<SD<<' '<<M<<endl<<SD<<' '<<S<<endl;
+        }else if(D2==4){
+            cout<<SD<<' '<<SD<<endl<<SD<<' '<<N<<endl<<SD<<' '<<SD<<endl;
+        }else if(D2==5){
+            cout<<SD<<' '<<SD<<endl<<SD<<' '<<M<<endl<<SD<<' '<<SD<<endl;
+        }else{
+            cout<<SD<<' '<<SD<<endl<<SD<<' '<<SD<<endl<<SD<<' '<<SD<<endl;
+        }
+    }
+    cout<<R<<' '<<R<<endl;
+}
 int main() {
     choice = 0;
     Welcome();
@@ -62,6 +153,7 @@ int main() {
             for (int i=0;i<20;i++){
                 cout<<'\n';
             }
+            cout<<"You have "<<nr1.credits<<" credits\n";
             cout<<"Place a bet:\n";
             cin>>bet;
             while(bet<=0||bet>nr1.credits){
@@ -76,9 +168,11 @@ int main() {
                 cin>>choice;
             }
             GenRandNr();
-            cout<<"You threw : "<<nr1.D1<<" "<<nr1.D2<<'\n';
+            cout<<"You threw : ";
+            DisplayD(nr1.D1,nr1.D2);
             s1=nr1.D1+nr1.D2;
-            cout<<"The CPU threw : "<<nr2.D1<<' '<<nr2.D2<<'\n';
+            cout<<"The CPU threw : ";
+            DisplayD(nr2.D1,nr2.D2);
             s2=nr2.D1+nr2.D2;
             if (nr1.D1==nr1.D2&&(nr1.D1==1||nr1.D1==6)){
                 if (nr2.D1==nr2.D2&&(nr2.D1==1||nr2.D1==6)){
@@ -154,9 +248,11 @@ int main() {
                     cin>>choice;
                 }
                 GenRandNr();
-                cout<<nr1.name<<" threw: "<<nr1.D1<<' '<<nr1.D2<<'\n';
+                cout<<nr1.name<<" threw: ";
+                DisplayD(nr1.D1,nr1.D2);
                 s1=nr1.D1+nr1.D2;
-                cout<<nr2.name<<" threw: "<<nr2.D1<<' '<<nr2.D2<<'\n';
+                cout<<nr2.name<<" threw: ";
+                DisplayD(nr2.D1,nr2.D2);
                 s2=nr2.D1+nr2.D2;
             }else{
                 cout<<nr2.name<<", please place a bet: ";
